@@ -2,10 +2,13 @@ const rp = require("request-promise");
 const cheerio = require("cheerio");
 const url = "https://www.viamobilidade.com.br/";
 const puppeteer = require("puppeteer");
+const cors = require("cors");
 
 const express = require("express");
 const app = express();
 const port = 3000;
+
+app.use(cors());
 
 async function getWebData() {
   const browser = await puppeteer.launch();
