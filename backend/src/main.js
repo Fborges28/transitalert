@@ -1,14 +1,30 @@
 const rp = require("request-promise");
 const cheerio = require("cheerio");
-const url = "https://www.viamobilidade.com.br/";
 const puppeteer = require("puppeteer");
 const cors = require("cors");
-
 const express = require("express");
-const app = express();
+const data = require("./data/db.json");
+
+const url = "https://www.viamobilidade.com.br/";
 const port = 3000;
 
+const app = express();
 app.use(cors());
+
+app.get("/trens", function (req, res) {
+  res.json(data.lines);
+});
+
+app.get("/trens/status", function (req, res) {
+  (async () => {
+    const result = await getWebData();
+    res.json(result);
+  })();
+});
+
+app.listen(port, function () {
+  console.log(`Example app listening on port ${port}!`);
+});
 
 async function getWebData() {
   const browser = await puppeteer.launch();
@@ -43,34 +59,3 @@ async function getWebData() {
 
   return lines;
 }
-
-app.get("/trens", function (req, res) {
-  const trens = [
-    { title: "Linha 1 - Azul" },
-    { title: "Linha 2 - Verde" },
-    { title: "Linha 3 - Vermelha" },
-    { title: "Linha 4-Amarela" },
-    { title: "Linha 5-Lilás" },
-    { title: "RUBI" },
-    { title: "Linha 8-Diamante" },
-    { title: "Linha 9-Esmeralda" },
-    { title: "TURQUESA" },
-    { title: "CORAL" },
-    { title: "SAFIRA" },
-    { title: "JADE" },
-    { title: "Linha 15 - Prata" },
-  ];
-
-  res.json(trens);
-});
-
-app.get("/trens/status", function (req, res) {
-  (async () => {
-    const result = await getWebData();
-    res.json(result);
-  })();
-});
-
-app.listen(port, function () {
-  console.log(`Example app listening on port ${port}!`);
-});
