@@ -7,6 +7,14 @@
   position: relative;
 }
 
+.status-line-row:nth-of-type(1),
+.status-line-row:nth-of-type(2),
+.status-line-row:nth-of-type(3),
+.status-line-row:nth-of-type(11){
+  color: #fff;
+}
+
+
 .status-line-row .status-line-icon svg{
   position: absolute;
   width: 40px;
@@ -34,10 +42,10 @@
 }
 
 .status-line-row .status.normal {
-
+  color: #50B140;
 }
 
 .status-line-row .status.problem {
-
+  color: #B14040;
 }
 

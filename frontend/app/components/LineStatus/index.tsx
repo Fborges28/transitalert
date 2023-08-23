@@ -11,6 +11,9 @@ function LineStatus({
   status: string;
   style: React.CSSProperties;
 }) {
+
+  const statusNormal = status.indexOf("Normal") > -1;
+
   return (
     <div className={styles["status-line-row"]}>
       <div className={styles["status-line-icon"]}>
@@ -19,7 +22,7 @@ function LineStatus({
         </svg>
       </div>
       <section className={styles["line-name"]} style={style}>{name}</section>
-      <section className={styles["status"]}>{status}</section>
+      <section className={`${styles["status"]} ${statusNormal ? styles["normal"]: styles["problem"]}`}>{status}</section>
     </div>
   )
 }
