@@ -1,0 +1,19 @@
+.form-control {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-control label {
+  color: var(--neutral-color-text);
+  margin-bottom: 12px;
+}
+
+.form-control input{
+  border: 1px solid #D9D9D9;
+  border-radius: var(--border-radius-inputs);
+  padding: 12px;
+  margin-bottom: 12px;
+  width: 100%;
+}
+

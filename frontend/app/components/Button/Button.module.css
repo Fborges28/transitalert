@@ -1,0 +1,8 @@
+.button{
+  background-color: var(--neutral-color-dark);
+  color: var(--neutral-color-dark-text);
+  border-radius: var(--border-radius-inputs);
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+}
