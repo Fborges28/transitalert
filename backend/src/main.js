@@ -6,7 +6,7 @@ const express = require("express");
 const data = require("./data/db.json");
 
 const url = "https://www.viamobilidade.com.br/";
-const port = 3000;
+const port = 8080;
 
 const app = express();
 app.use(cors());
@@ -44,12 +44,14 @@ async function getWebData() {
 
   const lines = [];
   statusesLines.each((index, element) => {
-    const lineTitle = $(element).find("span").attr("title");
+    const title = $(element).find("span").attr("title");
+    const color = $(element).find("span").css("background-color");
     const status = $(element).find(".status").text();
 
     const result = {
-      title: lineTitle,
-      status: status,
+      title,
+      status,
+      color,
     };
 
     lines.push(result);
