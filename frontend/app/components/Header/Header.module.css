@@ -1,5 +1,9 @@
 .main-header{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 20px;
+}
+
+.main-header.loggedIn{
+  justify-content: space-between;
 }

@@ -1,5 +1,6 @@
 .login {
-  width: 60%;
+  width: 80%;
+  max-width: 400px;
   height: calc(100vh - 40px);
   display: flex;
   justify-content: center;
@@ -11,4 +12,10 @@
 .login-access{
   width: 100%;
   margin-top: 40px;
+}
+
+@media screen and (min-width: 480px){
+  .login{
+    width: 60%;
+  }
 }

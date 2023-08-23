@@ -1,13 +1,19 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import Menu from '../Menu'
 import Logo from '../Logo'
 import styles from "./Header.module.css";
 
 function Header() {
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
   return (
-    <header className={`${styles["main-header"]}`}>
+    <header className={`${styles["main-header"]} ${isLoggedIn? "loggedIn": ""}`}>
       <Logo />
-      <Menu />
+      {
+        isLoggedIn ? <Menu /> : ""
+      }
     </header>
   )
 }
