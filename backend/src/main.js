@@ -1,5 +1,4 @@
 const cheerio = require("cheerio");
-const puppeteer = require("puppeteer");
 const cors = require("cors");
 const express = require("express");
 const data = require("./data/db.json");
@@ -26,37 +25,27 @@ app.listen(port, function () {
 });
 
 async function getWebData() {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+  return fetch(url)
+    .then((response) => response.text())
+    .then((html) => {
+      const $ = cheerio.load(html);
+      const statusesLines = $(".line-wrapper li");
 
-  await page.goto(url);
+      const lines = [];
+      statusesLines.each((index, element) => {
+        const title = $(element).find("span").attr("title");
+        const color = $(element).find("span").css("background-color");
+        const status = $(element).find(".status").text();
 
-  const pageData = await page.evaluate(() => {
-    return {
-      html: document.documentElement.innerHTML,
-    };
-  });
+        const result = {
+          title,
+          status,
+          color,
+        };
 
-  const $ = cheerio.load(pageData.html);
+        lines.push(result);
+      });
 
-  const statusesLines = $(".line-wrapper li");
-
-  const lines = [];
-  statusesLines.each((index, element) => {
-    const title = $(element).find("span").attr("title");
-    const color = $(element).find("span").css("background-color");
-    const status = $(element).find(".status").text();
-
-    const result = {
-      title,
-      status,
-      color,
-    };
-
-    lines.push(result);
-  });
-
-  await browser.close();
-
-  return lines;
+      return lines;
+    });
 }
