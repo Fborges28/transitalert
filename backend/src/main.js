@@ -1,4 +1,3 @@
-const rp = require("request-promise");
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
 const cors = require("cors");
