@@ -1,16 +1,19 @@
 .status-line-row{
   width: 100%;
+  min-width: 360px;
+  max-width: 480px;
   display: flex;
   height: 40px;
   position: relative;
 }
 
-.status-line-row img{
+.status-line-row .status-line-icon svg{
   position: absolute;
   width: 40px;
   height: 40px;
   left: 0;
   top: -15px;
+  color: #D7D7D7;
 }
 
 .status-line-row .line-name{
