@@ -1,51 +1,37 @@
-const cheerio = require("cheerio");
+require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
-const data = require("./data/db.json");
-
-const url = "https://www.viamobilidade.com.br/";
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const db = mongoose.connection;
 const port = 8080;
 
 const app = express();
+app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/trens", function (req, res) {
-  res.json(data.lines);
+// Connect to MongoDB
+mongoose.connect(process.env.DB_CONNECTION, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-app.get("/trens/status", function (req, res) {
-  (async () => {
-    const result = await getWebData();
-    res.json(result);
-  })();
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function () {
+  console.log("Connected successfully");
+});
+
+// Trains Routes
+const trainsRoutes = require("./routes/trains");
+const reportsRoutes = require("./routes/reports");
+
+app.use("/trens", trainsRoutes);
+app.use("/reports", reportsRoutes);
+
+app.get("/", function (req, res) {
+  res.send("Linhas de transporte público de São Paulo");
 });
 
 app.listen(port, function () {
-  console.log(`Example app listening on port ${port}!`);
+  console.log(`Listening on port ${port}!`);
 });
-
-async function getWebData() {
-  return fetch(url)
-    .then((response) => response.text())
-    .then((html) => {
-      const $ = cheerio.load(html);
-      const statusesLines = $(".line-wrapper li");
-
-      const lines = [];
-      statusesLines.each((index, element) => {
-        const title = $(element).find("span").attr("title");
-        const color = $(element).find("span").css("background-color");
-        const status = $(element).find(".status").text();
-
-        const result = {
-          title,
-          status,
-          color,
-        };
-
-        lines.push(result);
-      });
-
-      return lines;
-    });
-}
