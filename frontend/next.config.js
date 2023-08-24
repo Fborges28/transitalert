@@ -15,7 +15,7 @@ const nextConfig = {
         destination: `${process.env.API_URL}/reports`,
       },
       {
-        source: "/reports/status",
+        source: "/reports/statuses",
         destination: `${process.env.API_URL}/reports/status`,
       },
       {

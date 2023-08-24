@@ -1,0 +1,26 @@
+.new-report {
+  width: 80%;
+  max-width: 400px;
+  height: calc(100vh - 40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0px auto;
+}
+
+.new-report h2 {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.new-report-access {
+  width: 100%;
+  margin-top: 40px;
+}
+
+@media screen and (min-width: 480px) {
+  .new-report {
+    width: 60%;
+  }
+}

@@ -43,7 +43,11 @@ function Status() {
       <h4>Linhas de trem e metrô em São Paulo</h4>
       {
         lines.length > 0 ? (
-          <p>Atualizado em {lines[0].updated_at}</p>
+          <section className={styles["info"]}>
+            <p>Atualizado em {lines[0].updated_at}</p>
+            <p>Dados oficiais</p>
+          </section>
+
         ): ""
       }
       <div className={styles["status-container"]}>

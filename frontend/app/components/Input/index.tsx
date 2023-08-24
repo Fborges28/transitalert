@@ -1,21 +1,25 @@
-import React from 'react'
+import React, { ChangeEventHandler } from 'react'
 import styles from "./Input.module.css";
 
 function Input({
   id,
   label,
   type,
-  placeholder
+  placeholder,
+  value,
+  onChange
 }: {
   id: string,
   label: string,
   type: string,
-  placeholder: string
+  placeholder: string,
+  value?: string,
+  onChange?: (ChangeEventHandler<HTMLInputElement>)
 }) {
   return (
     <div className={`${styles["form-control"]}`}>
       <label htmlFor={id}>{label}</label>
-      <input id={id} placeholder={placeholder} type={type}/>
+      <input id={id} value={value} placeholder={placeholder} type={type} onChange={onChange}/>
     </div>
   )
 }

@@ -10,7 +10,7 @@ function Login() {
       <Input id="user" label='Usuário/E-mail' placeholder='Usuário ou e-mail' type='text'></Input>
       <Input id="user" label='Senha' placeholder='senha' type='password'></Input>
       <div className={`${styles["login-access"]}`}>
-        <Link href={"/status"}>
+        <Link href={"/reports/status"}>
           <Button>Acessar</Button>
         </Link>
       </div>
