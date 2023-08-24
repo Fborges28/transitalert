@@ -14,7 +14,7 @@ function Status() {
   const [lines, setLines] = React.useState<Line[]>([]);
 
   useEffect(() => {
-    axios.get<Line[]>('/trens/status')
+    axios.get<Line[]>('/trains/status')
       .then(response => {
         setLines(response.data);
       })

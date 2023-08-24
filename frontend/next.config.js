@@ -3,12 +3,12 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/trens",
-        destination: `${process.env.API_URL}/trens`,
+        source: "/trains",
+        destination: `${process.env.API_URL}/trains`,
       },
       {
-        source: "/trens/status",
-        destination: `${process.env.API_URL}/trens/status`,
+        source: "/trains/status",
+        destination: `${process.env.API_URL}/trains/status`,
       },
       {
         source: "/reports",

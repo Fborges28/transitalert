@@ -25,7 +25,7 @@ db.once("open", function () {
 const trainsRoutes = require("./routes/trains");
 const reportsRoutes = require("./routes/reports");
 
-app.use("/trens", trainsRoutes);
+app.use("/trains", trainsRoutes);
 app.use("/reports", reportsRoutes);
 
 app.get("/", function (req, res) {
