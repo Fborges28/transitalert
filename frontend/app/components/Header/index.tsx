@@ -6,7 +6,7 @@ import Logo from '../Logo'
 import styles from "./Header.module.css";
 
 function Header() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
 
   return (
     <header className={`${styles["main-header"]} ${isLoggedIn? "loggedIn": ""}`}>

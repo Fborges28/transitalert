@@ -1,4 +1,9 @@
-.menu {
+.main-menu{
+  display: none;
+  position: relative;
+}
+
+.open {
   position: fixed;
   top: 0;
   left: 0;
@@ -18,5 +23,46 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  padding: 10px 20px 20px 20px;
+  box-sizing: border-box;
+}
+
+.menu-top{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-icon-open{
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.menu-icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+  cursor: pointer;
+}
+
+.menu-links{
+  margin-top: 80px;
+  text-align: right;
+}
+
+.menu-links ul {
+  padding: 0;
+  margin: 0;
+}
+
+.menu-links ul li {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.menu-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
 }

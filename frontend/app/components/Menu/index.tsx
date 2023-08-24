@@ -5,32 +5,51 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 function Menu() {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  }
+
   return (
-    <div className={styles["menu"]}>
-      <aside>
-        <section className={styles["menu-top"]}>
-          <Image
-            className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-            src="/icons/menu.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </section>
-        <section className={styles["menu-links"]}>
-          <nav>
-            <ul>
-              <li><Link href="/status">Status das linhas</Link></li>
-              <li><Link href="/reports/status">Relatos dos usuários</Link></li>
-              <li><Link href="/reports/new">Novo relato</Link></li>
-            </ul>
-          </nav>
-        </section>
-        <section className={styles["menu-bottom"]}>
-          <Logo />
-        </section>
-      </aside>
+    <div className={`${styles["menu"]}`}>
+      <Image
+        className={`${styles["menu-icon"]} ${styles["menu-icon-open"]}`}
+        src="/icons/menu.svg"
+        alt="Next.js Logo"
+        width={180}
+        height={37}
+        priority
+        onClick={() => setMenuOpen(true)}
+      />
+
+      <section className={`${styles["main-menu"]} ${menuOpen ? styles["open"] : ""}`}>
+        <aside>
+          <section className={styles["menu-top"]}>
+            <Image
+              className={styles["menu-icon"]}
+              src="/icons/menu.svg"
+              alt="Next.js Logo"
+              width={180}
+              height={37}
+              priority
+              onClick={toggleMenu}
+            />
+          </section>
+          <section className={styles["menu-links"]}>
+            <nav>
+              <ul>
+                <li><Link href="/status" onClick={toggleMenu}>Status das linhas</Link></li>
+                <li><Link href="/reports/status" onClick={toggleMenu}>Relatos dos usuários</Link></li>
+                <li><Link href="/reports/new" onClick={toggleMenu}>Novo relato</Link></li>
+              </ul>
+            </nav>
+          </section>
+          <section className={styles["menu-bottom"]}>
+            <Logo />
+          </section>
+        </aside>
+      </section>
     </div>
   )
 }
